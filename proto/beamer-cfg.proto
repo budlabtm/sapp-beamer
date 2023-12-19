@@ -1,0 +1,20 @@
+syntax="proto3";
+
+package budlab.sapp.beamer.config;
+
+message BeamerConfiguration {
+  repeated CamConfiguration parameters = 1;
+}
+
+message CamConfiguration {
+  enum CamType {
+    CAM_TYPE_HORIZONTAL = 0;
+    CAM_TYPE_VERTICAL = 1;
+  }
+
+  CamType type = 1;
+  string source = 2; // Associated MQTT topic (optional)
+  bool enabled = 3;
+  double betatron = 4; // Betatron function
+  double dispersion = 5; // Dispersion function (optional)
+}

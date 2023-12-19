@@ -1,0 +1,2 @@
+common --cxxopt=-std=c++20
+common --registry=https://raw.githubusercontent.com/budlabtm/bazel-central-registry/main/
