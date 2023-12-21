@@ -1,0 +1,7 @@
+syntax="proto3";
+
+message BeamerResult {
+  double emittance_h = 1;
+  double emittance_v = 2;
+  double dependence = 3;
+}

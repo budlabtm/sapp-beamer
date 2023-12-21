@@ -1,3 +1,4 @@
-.clwb
+.vscode
+.idea
 bazel-*
 MODULE.bazel.lock
