@@ -1,10 +1,9 @@
-syntax="proto3";
+syntax = "proto3";
 
-package budlab.sapp.beamer;
+package budlab.beamer;
 
 message BeamerConfiguration {
-  string source = 1; // Configuration MQTT topic (optional)
-  string output = 2; // Output MQTT topic (optional)
+  string cfg_source = 1;
   repeated FrameConfiguration frames = 3;
 }
 
@@ -14,9 +13,9 @@ message FrameConfiguration {
     FRAME_TYPE_VERTICAL = 1;
   }
 
+  string source = 2;
   FrameType type = 1;
-  string source = 2; // Associated data MQTT topic (optional)
   bool enabled = 3;
   double beta = 4;
-  double etta = 5; // optional
+  double etta = 5;
 }

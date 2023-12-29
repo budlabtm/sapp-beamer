@@ -7,8 +7,16 @@ http_archive(
     url = "https://github.com/Vertexwahn/rules_qt6/releases/download/v0.0.3/rules_qt6-v0.0.3.tar.gz",
 )
 
+http_archive(
+    name = "msg",
+    sha256 = "5537fbd138ae3c02d7a4ce1a6032533c4f9248699a8cb7e9640d6f15999e019d",
+    strip_prefix = "lib-msg-1.0.0-linux",
+    url = "https://github.com/budlabtm/lib-msg/archive/refs/tags/v1.0.0-linux.tar.gz",
+)
+
 load("@rules_qt//:fetch_qt.bzl", "fetch_qt6")
 load("@rules_qt//tools:qt_toolchain.bzl", "register_qt_toolchains")
 
 fetch_qt6()
+
 register_qt_toolchains()
