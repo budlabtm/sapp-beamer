@@ -4,8 +4,8 @@
 #include <QtCore/QObject>
 #include <QtCore/QSettings>
 #include <vector>
-#include <msg/consumer.h>
 
+#include "msg/consumer.h"
 #include "beamer/proto/beamer-cfg.pb.h"
 
 namespace budlab::beamer {
@@ -22,9 +22,13 @@ class ConfigurationRepo : public QObject {
 
  private:
   BeamerConfiguration cfg_;
-  QSettings local_;
+  QSettings local_{"budlab", "beamer"};
+  std::unique_ptr<budlab::msg::Consumer> consumer_;
 
  public:
+  ConfigurationRepo(budlab::msg::IClient *mqtt_client);
+  virtual ~ConfigurationRepo() {}
+
   const BeamerConfiguration &Get();
 
  signals:

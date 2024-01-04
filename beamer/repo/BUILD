@@ -5,10 +5,8 @@ qt_cc_library(
     srcs = glob(["*.cc"]),
     hdrs = glob(["*.h"]),
     deps = [
-        "//beamer/model",
-        "@lib-msg//msg",
+        "//beamer/proto:beamer-cfg-cc-proto",
         "@lib-msg//msg/mqtt",
-        "@lib-msg//msg/vcas",
         "@rules_qt//:qt_core",
     ],
 )
