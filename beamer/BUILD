@@ -1,5 +1,5 @@
 cc_binary(
     name = "beamer",
     srcs = ["main.cc"],
-    deps = ["@msg//msg"],
+    deps = ["@lib-msg//msg"],
 )

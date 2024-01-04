@@ -5,8 +5,8 @@ proto_library(
 )
 
 proto_library(
-    name = "beamer-out-proto",
-    srcs = ["beamer-out.proto"],
+    name = "beamer-res-proto",
+    srcs = ["beamer-res.proto"],
     visibility = ["//visibility:public"],
 )
 
@@ -17,7 +17,7 @@ cc_proto_library(
 )
 
 cc_proto_library(
-    name = "beamer-out-cc-proto",
+    name = "beamer-res-cc-proto",
     visibility = ["//beamer:__subpackages__"],
-    deps = [":beamer-out-proto"],
+    deps = [":beamer-res-proto"],
 )
