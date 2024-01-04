@@ -23,6 +23,10 @@ class Switch : public QObject {
   std::unique_ptr<budlab::msg::Producer> vcas_prod_;
   std::unique_ptr<budlab::msg::Producer> mqtt_prod_;
 
+ public:
+  Switch(budlab::msg::IClient *vcas_client, budlab::msg::IClient *mqtt_client);
+  virtual ~Switch() {}
+
  public slots:
   void OnResult(const Result &result);
 };

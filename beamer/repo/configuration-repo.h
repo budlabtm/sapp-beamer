@@ -4,18 +4,12 @@
 #include <QtCore/QObject>
 #include <QtCore/QSettings>
 #include <vector>
+#include <string>
 
 #include "msg/consumer.h"
 #include "beamer/proto/beamer-cfg.pb.h"
 
 namespace budlab::beamer {
-
-struct Mod {
-  std::string from;
-  std::string to;
-
-  Mod(std::string from_, std::string to_) : from(from_), to(to_) {}
-};
 
 class ConfigurationRepo : public QObject {
   Q_OBJECT
@@ -30,9 +24,14 @@ class ConfigurationRepo : public QObject {
   virtual ~ConfigurationRepo() {}
 
   const BeamerConfiguration &Get();
+  void Terminate();
 
  signals:
-  void SourcesChanged(const std::vector<Mod> &mods);
+  void SourcesChanged(const std::vector<std::string> &o,
+                      const std::vector<std::string> &n);
+
+ private slots:
+  void OnConsumed(budlab::msg::Record record);
 };
 
 }  // namespace budlab::beamer

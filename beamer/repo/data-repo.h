@@ -31,7 +31,8 @@ class DataRepo : public QObject {
 
  private slots:
   void OnConsumed(budlab::msg::Record record);
-  void OnSourcesChanged(const std::vector<Mod> &mods);
+  void OnSourcesChanged(const std::vector<std::string> &o,
+                        const std::vector<std::string> &n);
 };
 
 }  // namespace budlab::beamer
