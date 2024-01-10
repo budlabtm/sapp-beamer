@@ -5,7 +5,7 @@
 #define EM_V_DEF 0.0
 #define DEP_DEF 0.0
 
-#include "gsl/gsl_multimin.h"
+#include <gsl/gsl_multimin.h>
 #include "beamer/proto/beamer-res.pb.h"
 #include "beamer/proto/beamer-cfg.pb.h"
 

@@ -7,10 +7,10 @@ qt_cc_library(
         exclude = ["main.cc"],
     ),
     hdrs = glob(["*.h"]),
+    linkopts = ["-lgsl"],
     deps = [
         "//beamer/proto:beamer-cfg-cc-proto",
         "//beamer/proto:beamer-res-cc-proto",
-        "//gsl",
         "@lib-msg//msg/mqtt",
         "@lib-msg//msg/vcas",
         "@rules_qt//:qt_core",
