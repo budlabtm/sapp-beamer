@@ -3,7 +3,6 @@ syntax = "proto3";
 package budlab.beamer;
 
 message BeamerResult {
-  double em_h = 1;
-  double em_v = 2;
-  double dep = 3;
+  double em = 1;
+  double dp = 3;
 }

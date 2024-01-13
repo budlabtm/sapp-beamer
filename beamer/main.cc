@@ -12,8 +12,8 @@ int main(int argc, char **argv) {
   budlab::msg::MqttClient mqtt;
   budlab::msg::VcasClient vcas;
 
-  mqtt.Configure(Credentials("localhost", "hfr-v-client", "mxlinux"));
-  vcas.Configure(Credentials("localhost", 12345));
+  mqtt.Configure(Credentials("172.16.1.201", "hfr-v-client", "mxlinux"));
+  vcas.Configure(Credentials("172.16.1.110", 20041));
 
   Repo r(&vcas, &mqtt);
 

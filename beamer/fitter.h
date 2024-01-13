@@ -1,9 +1,8 @@
 #ifndef SAPP_BEAMER_FITTER_H
 #define SAPP_BEAMER_FITTER_H
 
-#define EM_H_DEF 0.0
-#define EM_V_DEF 0.0
-#define DEP_DEF 0.0
+#define EM_DEF 1e-8
+#define DP_DEF 1e-4
 
 #include <gsl/gsl_multimin.h>
 #include "beamer/proto/beamer-res.pb.h"
@@ -27,7 +26,7 @@ class Fitter {
  private:
   gsl_multimin_function_fdf function_;
   gsl_multimin_fdfminimizer *minimizer_;
-  gsl_vector *result_;
+  gsl_vector *start_;
 
  public:
   Fitter();

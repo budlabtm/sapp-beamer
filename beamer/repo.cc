@@ -1,6 +1,8 @@
 #include <QtCore/QCoreApplication>
 #include <unordered_set>
 #include <chrono>
+#include <iostream>
+#include <glog/logging.h>
 
 #include "repo.h"
 
@@ -16,10 +18,53 @@ Repo::Repo(IClient *vcas, IClient *mqtt) {
 
   if (db_.contains("cfg"))
     cfg_.ParseFromString(db_.value("cfg").toString().toStdString());
-  else
+  else {
     cfg_.set_source("/budlab/beamer/cfg");
+    Save();
+  }
 
   mqtt_con_->Subscribe(cfg_.source());
+
+  // Test
+  FrameConfiguration *frame = cfg_.add_frames();
+  frame->set_source("VEPP/CCD/1M1L/sigma_x");
+  frame->set_type(FrameConfiguration_FrameType_FRAME_TYPE_HORIZONTAL);
+  frame->set_beta(450);
+  frame->set_etta(0);
+  vcas_con_->Subscribe("VEPP/CCD/1M1L/sigma_x");
+
+  frame = cfg_.add_frames();
+  frame->set_source("VEPP/CCD/1M1L/sigma_z");
+  frame->set_type(FrameConfiguration_FrameType_FRAME_TYPE_VERTICAL);
+  frame->set_beta(620);
+  vcas_con_->Subscribe("VEPP/CCD/1M1L/sigma_z");
+
+  frame = cfg_.add_frames();
+  frame->set_source("VEPP/CCD/1M2L/sigma_x");
+  frame->set_type(FrameConfiguration_FrameType_FRAME_TYPE_HORIZONTAL);
+  frame->set_beta(180);
+  frame->set_etta(40);
+  vcas_con_->Subscribe("VEPP/CCD/1M2L/sigma_x");
+
+  frame = cfg_.add_frames();
+  frame->set_source("VEPP/CCD/1M2L/sigma_z");
+  frame->set_type(FrameConfiguration_FrameType_FRAME_TYPE_VERTICAL);
+  frame->set_beta(250);
+  vcas_con_->Subscribe("VEPP/CCD/1M2L/sigma_z");
+
+  frame = cfg_.add_frames();
+  frame->set_source("VEPP/CCD/2M1L/sigma_x");
+  frame->set_type(FrameConfiguration_FrameType_FRAME_TYPE_HORIZONTAL);
+  frame->set_beta(180);
+  frame->set_etta(40);
+  vcas_con_->Subscribe("VEPP/CCD/2M1L/sigma_x");
+
+  frame = cfg_.add_frames();
+  frame->set_source("VEPP/CCD/2M1L/sigma_z");
+  frame->set_type(FrameConfiguration_FrameType_FRAME_TYPE_VERTICAL);
+  frame->set_beta(250);
+  vcas_con_->Subscribe("VEPP/CCD/2M1L/sigma_z");
+  // Test
 
   connect(mqtt_con_.get(), SIGNAL(Consumed(Record)), this,
           SLOT(OnConfiguration(Record)));
@@ -83,7 +128,7 @@ void Repo::OnTimeout() {
       duration_cast<milliseconds>(system_clock::now().time_since_epoch())
           .count();
 
-  mqtt_prod_->Send(Record("/budlab/beamer", res.SerializeAsString(), time));
+  // mqtt_prod_->Send(Record("/budlab/beamer", res.SerializeAsString(), time));
 }
 
 void Repo::Save() {
