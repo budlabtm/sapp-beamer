@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package budlab.beamer;
+
+message BeamerConfiguration {
+  string source = 1;
+  repeated FrameConfiguration frames = 3;
+}
+
+message FrameConfiguration {
+  enum FrameType {
+    FRAME_TYPE_HORIZONTAL = 0;
+    FRAME_TYPE_VERTICAL = 1;
+  }
+
+  string source = 2;
+  FrameType type = 3;
+  double beta = 5;
+  double etta = 6;
+}
